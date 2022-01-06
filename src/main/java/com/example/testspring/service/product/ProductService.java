@@ -38,4 +38,9 @@ public class ProductService implements IProductService{
     public Page<Product> findAllProduct(Pageable pageable) {
         return productRepository.findAll(pageable);
     }
+
+    @Override
+    public Iterable<Product> findProductByCode(String code) {
+        return productRepository.findProductByCode(code);
+    }
 }

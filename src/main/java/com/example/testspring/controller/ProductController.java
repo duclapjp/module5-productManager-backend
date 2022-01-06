@@ -52,4 +52,9 @@ public class ProductController {
             return new ResponseEntity<>(productPage,HttpStatus.OK);
         }
     }
+    @GetMapping("/search/{code}")
+    public ResponseEntity<?> findProductByCode(@PathVariable String code){
+        Iterable<Product> product = productService.findProductByCode(code);
+        return new ResponseEntity<>(product,HttpStatus.OK);
+    }
 }
