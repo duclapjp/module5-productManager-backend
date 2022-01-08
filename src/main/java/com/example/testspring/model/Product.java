@@ -11,23 +11,34 @@ public class Product {
     private String code;
     private String name;
     private String description;
+    private String email;
     private String img;
     public Product() {
     }
 
-    public Product(String code, String name, String description, String img) {
+    public Product(String code, String name, String description, String email, String img) {
         this.code = code;
         this.name = name;
         this.description = description;
+        this.email = email;
         this.img = img;
     }
 
-    public Product(Long id, String code, String name, String description, String img) {
+    public Product(Long id, String code, String name, String description, String email, String img) {
         this.id = id;
         this.code = code;
         this.name = name;
         this.description = description;
+        this.email = email;
         this.img = img;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getImg() {

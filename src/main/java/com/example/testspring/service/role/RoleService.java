@@ -2,7 +2,6 @@ package com.example.testspring.service.role;
 
 import com.example.testspring.model.Product;
 import com.example.testspring.model.Role;
-import com.example.testspring.repository.IProductRepository;
 import com.example.testspring.repository.IRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -23,8 +22,9 @@ public class RoleService implements IRoleService{
     }
 
     @Override
-    public void save(Role role) {
+    public Product save(Role role) {
         roleRepository.save(role);
+        return null;
     }
 
     @Override

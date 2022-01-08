@@ -1,5 +1,6 @@
 package com.example.testspring.service;
 
+import com.example.testspring.model.Product;
 import org.springframework.data.crossstore.ChangeSetPersister;
 
 import java.util.Optional;
@@ -9,7 +10,7 @@ public interface IGeneralService<T> {
 
     Optional<T> findById(Long id) throws ChangeSetPersister.NotFoundException;
 
-    void save(T t);
+    Product save(T t);
 
     void remove(Long id);
 }

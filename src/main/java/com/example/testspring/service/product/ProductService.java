@@ -7,13 +7,14 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductService implements IProductService{
+public class ProductService implements IProductService {
     @Autowired
     private IProductRepository productRepository;
+
     @Override
     public Iterable<Product> findAll() {
         return productRepository.findAll();
@@ -25,8 +26,9 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public void save(Product product) {
+    public Product save(Product product) {
         productRepository.save(product);
+        return product;
     }
 
     @Override
@@ -40,7 +42,12 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public Iterable<Product> findProductByCode(String code) {
+    public Product findProductByCode(String code) {
         return productRepository.findProductByCode(code);
+    }
+
+    @Override
+    public List<String> getAllEmailToSend() {
+        return productRepository.getAllEmailToSend();
     }
 }

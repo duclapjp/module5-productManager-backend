@@ -1,5 +1,6 @@
 package com.example.testspring.controller;
 
+import com.example.testspring.configure.WebsocketService;
 import com.example.testspring.model.Product;
 import com.example.testspring.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/product")
 public class ProductController {
+    @Autowired
+    private WebsocketService websocketService;
     @Autowired
     private IProductService productService;
 //    @GetMapping()
@@ -54,7 +59,18 @@ public class ProductController {
     }
     @GetMapping("/search/{code}")
     public ResponseEntity<?> findProductByCode(@PathVariable String code){
-        Iterable<Product> product = productService.findProductByCode(code);
+        Product product = productService.findProductByCode(code);
         return new ResponseEntity<>(product,HttpStatus.OK);
+    }
+    @GetMapping("/test/{code}")
+    public ResponseEntity<?> testP(@PathVariable String code){
+        Product product = productService.findProductByCode(code);
+        String productstring = product.toString();
+        websocketService.sendMessageProduct(product);
+        return new ResponseEntity<>(product,HttpStatus.OK);
+    }
+    @GetMapping("/list")
+    public ResponseEntity<List<Product>> productList(){
+        return new ResponseEntity<>((List<Product>)productService.findAll(),HttpStatus.OK);
     }
 }

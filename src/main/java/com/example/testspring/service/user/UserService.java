@@ -3,7 +3,6 @@ package com.example.testspring.service.user;
 import com.example.testspring.model.Product;
 import com.example.testspring.model.User;
 import com.example.testspring.model.UserPrincipal;
-import com.example.testspring.repository.IProductRepository;
 import com.example.testspring.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -26,8 +25,9 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public void save(User user) {
+    public Product save(User user) {
         userRepository.save(user);
+        return null;
     }
 
     @Override
