@@ -24,7 +24,7 @@ public class MailerController {
     @Autowired
     private ProductService productService;
 
-    @Scheduled(cron = "0 40 2 * * ?")
+    @Scheduled(cron = "0 52 20 * * ?")
     public void sendEmail() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         LocalDate dayPlusAWeek = LocalDate.now().plusDays(1);

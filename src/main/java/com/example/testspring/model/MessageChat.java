@@ -1,30 +1,70 @@
 package com.example.testspring.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class MessageChat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
     private String message;
-
+    @ManyToOne(targetEntity = User.class)
+    private User sender;
+    @ManyToOne(targetEntity = User.class)
+    private User receiptVer;
+    private Long status;
+    private LocalDateTime time;
     public MessageChat() {
     }
 
-    public MessageChat(Long id, String username, String message) {
-        this.id = id;
-        this.username = username;
+    public MessageChat(String message, User sender, User receiptVer, Long status, LocalDateTime time) {
         this.message = message;
+        this.sender = sender;
+        this.receiptVer = receiptVer;
+        this.status = status;
+        this.time = time;
     }
 
-    public MessageChat(String username, String message) {
-        this.username = username;
+    public MessageChat(Long id, String message, User sender, User receiptVer, Long status, LocalDateTime time) {
+        this.id = id;
         this.message = message;
+        this.sender = sender;
+        this.receiptVer = receiptVer;
+        this.status = status;
+        this.time = time;
+    }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public User getReceiptVer() {
+        return receiptVer;
+    }
+
+    public void setReceiptVer(User receiptVer) {
+        this.receiptVer = receiptVer;
+    }
+
+    public Long getStatus() {
+        return status;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 
     public Long getId() {
@@ -35,13 +75,6 @@ public class MessageChat {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getMessage() {
         return message;
